@@ -2,6 +2,8 @@ from typing import Optional
 
 from fastapi import FastAPI
 
+import time
+
 app = FastAPI()
 
 
@@ -13,3 +15,8 @@ def read_root():
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
+
+@app.post("/model")
+async def add_item():
+    time.sleep(10)
+    return {"status": "generated"}
